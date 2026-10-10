@@ -1,3 +1,4 @@
+-[Mahak Gupta](https://github.com/2k24cs1j2411302-commits/first-contributions_05)
 -[cucumba44](https://github.com/cucumba44/first-contributions)
 -[THEMANnt](https://github.com/THEMANnt/first-contributions)-hello there
 -[bmscomp](https://bmscomp.github.io)
