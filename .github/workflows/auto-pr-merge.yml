@@ -185,6 +185,7 @@ jobs:
           IS_MULTIPLES_LINES_CHANGES: ${{ steps.is_only_contributors_file_changed.outputs.isMultipleLineChanged}}
           IS_MULTIPLES_FILES_CHANGES: ${{steps.is_only_contributors_file_changed.outputs.isMultipleFilesChanged}}
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const isMultipleFilesChanged = process.env.IS_MULTIPLES_FILES_CHANGES === 'true';
             const isMultipleLinesChanged = process.env.IS_MULTIPLES_LINES_CHANGES === 'true';
@@ -237,11 +238,11 @@ jobs:
             const {data: comments} = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.number,
+              issue_number: context.issue.number,
             })
 
-            // find any comment already made by the bot.                                                                                                    
-            const botComment = comments.find(comment => comment.user.login === 'github-actions[bot]')                                                                       
+            // find any comment already made by the bot.
+            const botComment = comments.find(comment => comment.user.login === 'github-actions[bot]')
 
             if (body) {
 
@@ -256,5 +257,3 @@ jobs:
                 await github.rest.issues.createComment({ owner, repo, issue_number: pr.number, body });
               }
             }
-            
-          github-token: ${{ secrets.GITHUB_TOKEN }}
